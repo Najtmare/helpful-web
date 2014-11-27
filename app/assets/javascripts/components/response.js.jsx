@@ -32,6 +32,14 @@ var Response = React.createClass({
     this.createMessage();
   },
 
+  sendAndArchiveMessage: function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    this.createMessage();
+    this.props.archiveHandler();
+  },
+
   // TODO: Include file attachments
   createMessage: function() {
     if(this.props.demo) {
@@ -100,7 +108,7 @@ var Response = React.createClass({
   renderArchiveButton: function() {
     if(!this.props.conversation.archived) {
       return (
-          <button className="btn btn-danger" onClick={this.props.archiveHandler}>Archive</button>
+          <button className="btn btn-default" onClick={this.sendAndArchiveMessage}>Send And Archive</button>
       );
     }
   },
